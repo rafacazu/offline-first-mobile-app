@@ -16,6 +16,16 @@ $(document).ready(function(){
                 db.inspections.put(formObj);
                 console.log("inserted blank record")
             }
+
+            //populate form
+
+            fDate = fData[0];
+
+            $.each(fData, function(formEle, formEleVal){
+                if($('input[name='+formEle+']').is(':file ')){
+                    displayImage(formEleVal, formEle);
+                }
+            })
         })
     })
 
