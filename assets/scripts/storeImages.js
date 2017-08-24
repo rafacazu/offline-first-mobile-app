@@ -5,7 +5,7 @@ function storeImage(image, filename){
     var db;
     var request  = indexedDB.open('inspectionImage', dbVersion);
 
-    var createObjectStore = function (database){
+    var createObjectStore = function (dataBase){
         console.log("creating ObjectStore");
         dataBase.createObjectStore("pictures");
     }
@@ -35,5 +35,24 @@ function storeImage(image, filename){
 
         xhr.open("GET", image, true);
         xhr.responseType = "blob";
+
+        xhr.addEventListener("load", function(){
+            if(xhr.status === 200){
+                console.log("image retrivied");
+                blob = xhr.response;
+                console.log("Blob:" + blob);
+                putImageInDb(blob);
+            }
+        });
+
+        xhr.send();
     }
+
+    var putImageInDb = function(blob){
+            console.log("putting picture in IndexDB");
+
+            var transaction = db.transaction(['pictures'], "readwrite");
+
+            var put = transaction.objectStore("pictures").put(blob, filename);
+        }
 }

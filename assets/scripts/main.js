@@ -34,7 +34,8 @@ $(document).ready(function(){
             formObj[filekey] = filename;
             db.inspections.update(fData.id, formObj);
 
-            $("#"+ filekey ).attr('src', tmppath)
+            $("#"+ filekey ).attr('src', tmppath);
+            storeImage(tmppath, filename);
         })
     })
 });
