@@ -19,10 +19,13 @@ $(document).ready(function(){
 
             //populate form
 
-            fDate = fData[0];
+            fData = fData[0];
+
+            console.log(fData);
 
             $.each(fData, function(formEle, formEleVal){
                 if($('input[name='+formEle+']').is(':file ')){
+                    console.log("display image");
                     displayImage(formEleVal, formEle);
                 }
             })

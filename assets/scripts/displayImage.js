@@ -29,11 +29,9 @@ function displayImage(filename, element){
         displayThumb();
     };
 
-    var displayThumb = function(){
-       
-    }
+   
 
-    var putImageInDb = function(blob){
+    var displayThumb = function(){
             console.log("putting picture in IndexDB");
 
             var transaction = db.transaction(['pictures'], "readonly");
