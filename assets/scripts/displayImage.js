@@ -1,4 +1,4 @@
-function displayImage(filename, element){
+function displayImage(filename, element, imgBlobObj){
     var indexedDB = window.indexedDB || window.mozIndexedDB || window.webkitIndexedDB || window.msIndexedDB || window.shimIndexedDB;
 
     var dbVersion = 1.0;
@@ -44,9 +44,15 @@ function displayImage(filename, element){
                 console.log("looking for " + filename);
                 var imgFile = objectStoreRequest.result;
                 console.log("got picture " + imgFile);
+
+                imgBlobObj[element] = imgFile;
+                imgBlobObj[element].name = filename;
                 var imgURL = window.URL.createObjectURL(imgFile);
                 var imgPicture = document.getElementById("places_picture");
                 imgPicture.setAttribute("src", imgURL);
             }
         }
+
+        var options = {name: imgBlobObj, type: "file", value: imgBlobObj[imgBlobObj]}
+        console.log(options);
 }

@@ -1,6 +1,8 @@
 $(document).ready(function(){
     console.log('main.js');
 
+    var imgBlobObj = {};
+
 
 
     var formObj = {}
@@ -17,8 +19,6 @@ $(document).ready(function(){
                 console.log("inserted blank record")
             }
 
-            //populate form
-
             fData = fData[0];
 
             console.log(fData);
@@ -26,7 +26,7 @@ $(document).ready(function(){
             $.each(fData, function(formEle, formEleVal){
                 if($('input[name='+formEle+']').is(':file ')){
                     console.log("display image");
-                    displayImage(formEleVal, formEle);
+                    displayImage(formEleVal, formEle, imgBlobObj);
                 }
             })
         })
@@ -48,7 +48,7 @@ $(document).ready(function(){
             db.inspections.update(fData.id, formObj);
 
             $("#"+ filekey ).attr('src', tmppath);
-            storeImage(tmppath, filename);
+            storeImage(tmppath, filename, imgBlobObj, filekey);
         })
     })
 });
