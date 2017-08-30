@@ -5,6 +5,10 @@ var urlsToCache = [
     'assets/css/style.css',
     'assets/scripts/main.js',
     'assets/scripts/onlineDetection.js',
+    '/sw.js',
+    'assets/scripts/jquery-3.2.1.min.js',
+    'https://unpkg.com/dexie@latest/dist/dexie.js',
+    'assets/scripts/storeImages.js',
 ]
 
 
@@ -45,7 +49,6 @@ self.addEventListener('fetch', event => {
                     if(!response || response.status !== 200 || response.type !== 'basic'){
                         return response;
                     }
-
                     var responseToCache = response.clone();
                     caches.open(CACHE_NAME)
                         .then(function(cache){
